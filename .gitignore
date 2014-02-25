@@ -1,0 +1,15 @@
+archcookbook.*.pdf
+archcookbook.*.mobi
+archcookbook.*.epub
+archcookbook.*.html
+archcookbook-*.epub
+archcookbook.*.wiki
+*.swp
+latex/*
+!latex/makepdf
+!latex/README
+!latex/template.tex
+!latex/config.yml
+programs/*
+*~
+.#*
