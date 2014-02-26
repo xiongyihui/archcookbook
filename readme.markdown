@@ -9,48 +9,19 @@ The TeX template makes use of [Lena Herrmann's JavaScript highlighter](http://le
 Kindle and ePub format provided using [Pandoc](http://johnmacfarlane.net/pandoc/).
 
 ## Generating books ##
-Packages listed below are for Ubuntu. If you use another OS or distribution names would be similar.
+On Ubuntu
 
-### PDF
-
-#### Dependencies
-
-Packages:
-
-* `pandoc`
-* `texlive-xetex`
-* `texlive-latex-extra`
-* `texlive-latex-recommended`
+```
+sudo apt-get install pandoc texlive-xetex texlive-latex-extra texlive-latex-recommended ruby mercurial
+make archcookbook.en.markdown                    # update markdown file
+make en.pdf                                      # generate pdf
+make en.epub                                     # generate epub
+```
 
 You should have "DejaVu Serif" and "Droid Sans Mono" fonts installed too. But you could change fonts in `common/pdf-template.tex` file if you want.
 
-#### Building
+For Mobi, you should have [KindleGen](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211) installed. Run `make en.mobi`.
 
-Run `make en.pdf`.
+For mbed wiki, you should have [redcarpet](https://github.com/vmg/redcarpet) installed. Run `make archcookbook.en.wiki`.
 
-### ePub
-
-#### Dependencies
-
-Packages:
-
-* `pandoc`
-
-#### Building
-
-Run `make en.epub`.
-
-### Mobi
-
-#### Dependencies
-
-Packages:
-
-* `pandoc`
-
-You should have [KindleGen](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211) installed too.
-
-#### Building
-
-Run `make en.mobi`.
 
