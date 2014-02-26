@@ -1,4 +1,4 @@
-## About ##
+# Arch Cookbook #
 Arch Cookbook is a cookbook to get started with [mbed](http://mbed.org/).
 
 ## Formats ##
@@ -22,11 +22,11 @@ Packages:
 * `texlive-latex-extra`
 * `texlive-latex-recommended`
 
-You should have Microsoft fonts installed too. But you could change fonts in `common/pdf-template.tex` file if you want.
+You should have "DejaVu Serif" and "Droid Sans Mono" fonts installed too. But you could change fonts in `common/pdf-template.tex` file if you want.
 
 #### Building
 
-Run `make en/mongodb.pdf`.
+Run `make en.pdf`.
 
 ### ePub
 
@@ -38,7 +38,7 @@ Packages:
 
 #### Building
 
-Run `make en/mongodb.epub`.
+Run `make en.epub`.
 
 ### Mobi
 
@@ -52,5 +52,5 @@ You should have [KindleGen](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=
 
 #### Building
 
-Run `make en/mongodb.mobi`.
+Run `make en.mobi`.
 
