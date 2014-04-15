@@ -48,7 +48,7 @@ def convert(src)
             output << line
         end
     end
-    output
+    output << "\n\n"
 end
 
 print "Generate a custom markdown file\n"
