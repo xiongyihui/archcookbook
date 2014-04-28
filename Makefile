@@ -12,7 +12,7 @@ EPUB_BUILDER_FLAGS = \
 
 MOBI_BUILDER = kindlegen
 
-archcookbook.en.markdown:
+en.markdown:
 	util/md2markdown.rb
 
 en.wiki:

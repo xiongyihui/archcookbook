@@ -12,8 +12,8 @@ Kindle and ePub format provided using [Pandoc](http://johnmacfarlane.net/pandoc/
 On Ubuntu
 
 ```
-sudo apt-get install pandoc texlive-xetex texlive-latex-extra texlive-latex-recommended ruby mercurial
-make archcookbook.en.markdown                    # update markdown file
+sudo apt-get install pandoc texlive texlive-xetex texlive-latex-extra texlive-latex-recommended ruby mercurial
+make en.markdown                                 # update markdown file
 make en.pdf                                      # generate pdf
 make en.epub                                     # generate epub
 ```

@@ -1,4 +1,4 @@
-# Temperature Sensing #
+# Recipe 5: Temperature Sensing #
 ## Ingredients ##
 In addition to things listed in Recipe 1 we require
 

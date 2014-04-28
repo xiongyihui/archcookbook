@@ -1,4 +1,4 @@
-# Playing with Digital Output #
+# Recipe 3: Digital Input #
 
 ## Ingredients ##
 
