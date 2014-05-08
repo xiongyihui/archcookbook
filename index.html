@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Arch Cookbook : anyone can cook" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Arch Cookbook</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/xiongyihui/archcookbook">View on GitHub</a>
+
+          <h1 id="project_title">Arch Cookbook</h1>
+          <h2 id="project_tagline">anyone can cook</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/xiongyihui/archcookbook/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/xiongyihui/archcookbook/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="preface" class="anchor" href="#preface"><span class="octicon octicon-link"></span></a>Preface</h1>
+
+<p>"Anyone can cook." - Gusteau's (a character in Ratatouille)</p>
+
+<p>This cookbook is a starting point to work with Seeedstudio Arch platform. 
+It introduces the platform with step by step examples by using Seeedstudio 
+Grove modules. The cookbook is written with beginners in mind and assumes 
+no prior experience in mbed API. This book expects a basic knowledge of C 
+programming language. mbed API and programs are written C++ language. 
+Although not essential to understand the programs, it is better you 
+understand how to create an object for a class and how to use member functions.</p>
+
+<p>If you are beginner, who is learning Embedded Systems and programming in 
+C/C++ - import andexecute the examples programs one by one by following the 
+procedure listed in each recipe. You can skip all other fine details presented 
+in the beginning.</p>
+
+<p>Happy Programming :)</p>
+
+<h1>
+<a name="arch-platform" class="anchor" href="#arch-platform"><span class="octicon octicon-link"></span></a>Arch platform</h1>
+
+<p>Seeedstudio Arch is a mbed enabled platform based on NXP's LPC11U24 microcontroller. 
+This platforms comes with header pins whose footprint are compatible with Arduino shields.
+ The two on-board Grove connectors can be interfaced with numerous Grove based sensors, actuators and display modules.</p>
+
+<p>Arch platform can be easily programmed over USB using the LPC11U24's inbuilt ISP driver. 
+Unlike mbed LPC11U24, Arch platform does not come with mbed interface chip. Hence, 
+an additional Arch board has to be used to debug the target using CMSIS-DAP.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Shields compatible header pins</li>
+<li>Two Grove connectors</li>
+<li>A large number of grove modules</li>
+<li>Drag-n-drop programming</li>
+<li>NXP LPC11U24 MCU</li>
+<li>Low power ARM Cortex-M0 Core</li>
+<li>48MHz, 32KB Flash, 8KB RAM, 4KB EEPROM</li>
+<li>USB Device, 2xSPI, UART, I2C</li>
+</ul><h2>
+<a name="hardware" class="anchor" href="#hardware"><span class="octicon octicon-link"></span></a>Hardware</h2>
+
+<p><img src="figures/arch_v1.1_pinout.png" alt="Arch V1.1 Pinout"></p>
+
+<h3>
+<a name="digital-inout" class="anchor" href="#digital-inout"><span class="octicon octicon-link"></span></a>Digital In/Out</h3>
+
+<p>All pins with light blue coloured lable can be used as DigitalOut/DigitalIn/DigitalInOut interface.</p>
+
+<h3>
+<a name="pwmout" class="anchor" href="#pwmout"><span class="octicon octicon-link"></span></a>PwmOut</h3>
+
+<p>Pins labelled as PwmOut (i.e magenta colourd lable) are possible outputs that can be routed from timers to generate PWM.</p>
+
+<h3>
+<a name="uart" class="anchor" href="#uart"><span class="octicon octicon-link"></span></a>UART</h3>
+
+<p>The TXD or RXD labelled pins (i.e yellow coloured label) are possible routing pins for one UART port.
+At a time, one TXD and one RXD pin can be configured for the UART.</p>
+
+<h1>
+<a name="recipe-1-blinking-an-led" class="anchor" href="#recipe-1-blinking-an-led"><span class="octicon octicon-link"></span></a>Recipe 1: Blinking an LED</h1>
+
+<p>A tradition of learn programming is write our first program to print a "hello, world" on our display.
+In Embedded Systems, we use a blinking LED to show our first running embedded system program to the world. </p>
+
+<h2>
+<a name="ingredients" class="anchor" href="#ingredients"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<ul>
+<li>Seeedstudio Arch board</li>
+<li>Micro-USB cable</li>
+<li>Access to internet and online mbed compiler.</li>
+</ul><h2>
+<a name="procedure" class="anchor" href="#procedure"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>Import the following Arch_GPIO_Ex1 program into online mbed compiler.</li>
+<li>Select Seeedstudio Arch as target platform (navigate to top-left corner of online compiler).</li>
+<li>Click Compile and Download button.</li>
+<li>You browser will download Arch_GPIO_Ex1_LPC11U24.bin file.</li>
+<li>Connect Arch board to PC using a micro-USB cable.</li>
+<li>Press the reset button longer(at-least 2 seconds) and release.</li>
+<li>You must see a USB drive being detected by you OS.</li>
+<li>Copy the Arch_GPIO_Ex1_LPC11U24.bin to that USB drive.</li>
+<li>Press and release the reset button very quickly.</li>
+<li>You have flashed your first program onto Arch board.</li>
+</ul><p><strong>Arch_GPIO_Ex1</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/viswesr/code/Arch_GPIO_Ex1">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+
+<span class="cm">/* Configure a GPIO pin as output for controlling a LED. 'led' is user assigned name and</span>
+<span class="cm"> 'LED1' is a internal name given to a port pin P1_8 in this Arch platform. */</span>
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="n">LED1</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">led</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>    <span class="c1">// Switch ON the LED.</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>  <span class="c1">// Wait for 0.5 Seconds.</span>
+        <span class="n">led</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// Switch OFF the LED.</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>  <span class="c1">// Wait for 0.5 Seconds.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>The above program uses mbed interface DigitalOut and mbed built-in function wait().
+LED1 is an pseudonym given to port pin P1_8. LED1 is labelled D1 in the Arch board.
+The state of LED1 is changed writing either 0 or 1 to 'led'. The mbed wait() function
+produces a delay in seconds. The state of the 'led' is continuous toggled every 0.5 seconds
+inside the endless <em>while()</em> loop.</p>
+
+<p>The features and functions present in DigitalOut are documented in DigitalOut page in handbook.
+Similarly the wait() function is documented in wait page in handbook</p>
+
+<h2>
+<a name="variation" class="anchor" href="#variation"><span class="octicon octicon-link"></span></a>Variation</h2>
+
+<p>Let us rewrite the above program using alternate APIs provided DigitalOut and wait.</p>
+
+<p><strong>Arch_GPIO_Ex2</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/viswesr/code/Arch_GPIO_Ex2">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+
+<span class="cm">/* Configure a GPIO pin as output for controlling a LED. 'led' is an user assigned name and</span>
+<span class="cm"> 'LED1' is an internal name given to a port pin P1_8 in this Arch platform. */</span>
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="n">LED1</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">led</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">// Here, DigitalOut -&gt; write() function is used to set the ouput high.</span>
+        <span class="n">wait_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>    <span class="c1">// Wait for 0.5 Seconds. The time is specified in milli-seconds using wait_ms() function.</span>
+        <span class="n">led</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">// Switch OFF the LED.</span>
+        <span class="n">wait_us</span><span class="p">(</span><span class="mi">500000</span><span class="p">);</span> <span class="c1">// Wait for 0.5 Seconds. The time is specified in micro-seconds using wait_us() function.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>Instead of led = in the Ex1 program, we have used led.write() function which essential does the same operation. 
+Here, wait() is replaced by wait_us(). The delay time is specified in micro seconds instead of seconds in this function.</p>
+
+<h1>
+<a name="control-multi-leds" class="anchor" href="#control-multi-leds"><span class="octicon octicon-link"></span></a>Control multi LEDs</h1>
+
+<h2>
+<a name="ingredients-1" class="anchor" href="#ingredients-1"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<ul>
+<li>Same as Recipe 1.</li>
+</ul><h2>
+<a name="procedure-1" class="anchor" href="#procedure-1"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)</li>
+</ul><p><strong>Arch_GPIO_Ex4</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/viswesr/code/Arch_GPIO_Ex4">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+
+<span class="n">BusOut</span> <span class="nf">onboardLEDs</span><span class="p">(</span><span class="n">P1_8</span><span class="p">,</span><span class="n">P1_9</span><span class="p">,</span><span class="n">P1_10</span><span class="p">,</span><span class="n">P1_11</span><span class="p">);</span> <span class="cm">/*P1_8 - P1_11 are LED1 - LED4*/</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">16</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">onboardLEDs</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="cm">/* LED1 is LSB  and LED4 is MSB*/</span>
+            <span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>The following program uses one variable to modify a set of 4 LEDs with BusOut interface. 
+The LED1 to LED4 counts up 4-bit binary value one by one with half-a-second delay. 
+BusOut interface comes handy while sending data to devices with parallel ports like LCDs.</p>
+
+<h1>
+<a name="playing-with-digital-output" class="anchor" href="#playing-with-digital-output"><span class="octicon octicon-link"></span></a>Playing with Digital Output</h1>
+
+<h2>
+<a name="ingredients-2" class="anchor" href="#ingredients-2"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<p>In addition to things listed in Recipe 1 we require</p>
+
+<ul>
+<li>Grove - Button</li>
+</ul><p><img src="figures/digital_input.jpg" alt="Digital Input"></p>
+
+<h2>
+<a name="procedure-2" class="anchor" href="#procedure-2"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>connect Grove - Button to on-board grove connector marked UART.</li>
+<li>Import the following Arch_GPIO_Ex3 program into online mbed compiler.</li>
+<li>Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)</li>
+</ul><p>This program keeps the LED1 on as long as the button is pressed.</p>
+
+<p><strong>Arch_GPIO_Ex3</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/viswesr/code/Arch_GPIO_Ex3">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="n">LED1</span><span class="p">);</span>    <span class="c1">// Configure LED1 pin as output</span>
+<span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="n">P1_14</span><span class="p">);</span> <span class="c1">// Configure P1_14 pin as input</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">led</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>    <span class="cm">/* read the state of input port pin P1_14 and write it to output port pin LED1*/</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>We use DigitalIn interface to read the status of a tactile switch connected to port pin P1_14.
+The button.read() function returns a value 1 if button is pressed and 0 if released. 
+This value is written to LED1 port pin using led.write().</p>
+
+<p>More information on this new module is available at DigitalIn handbook page.</p>
+
+<h1>
+<a name="analog-world" class="anchor" href="#analog-world"><span class="octicon octicon-link"></span></a>Analog world</h1>
+
+<h2>
+<a name="ingredients-3" class="anchor" href="#ingredients-3"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<p>In addition to things listed in Recipe 1 we require</p>
+
+<ul>
+<li>Grove - Potentiometer</li>
+</ul><p><img src="figures/analog_world.jpg" alt="Analog world"></p>
+
+<h2>
+<a name="procedure-3" class="anchor" href="#procedure-3"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>Connect middle SIG pin of Grove - Potentiometer to P0_11, other two pins to GND and 3.3V</li>
+<li>Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)</li>
+</ul><p>The rate of blinking of the LED is controlled by the analog value read from the potentiometer.</p>
+
+<p><strong>Arch_Analog_POT</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/viswesr/code/Arch_Analog_POT">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+
+<span class="n">AnalogIn</span> <span class="nf">pot</span><span class="p">(</span><span class="n">P0_11</span><span class="p">);</span>   <span class="cm">/* Potentiometer middle pin connected to P0_11, other two ends connected to GND and 3.3V */</span>
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="n">LED1</span><span class="p">);</span>  <span class="cm">/* LED blinks with a delay based on the analog input read */</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">ain</span><span class="p">;</span>   <span class="cm">/* Variable to store the analog input*/</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ain</span> <span class="o">=</span> <span class="n">pot</span><span class="p">.</span><span class="n">read</span><span class="p">();</span> <span class="cm">/* Read analog value (output will be any value between 0 and 1 */</span>
+        <span class="n">led</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>          <span class="cm">/* Switch ON LED        */</span>
+        <span class="n">wait</span><span class="p">(</span><span class="n">ain</span><span class="p">);</span>        <span class="cm">/* Wait for 'ain' Seconds (maximum delay is 1 seconds)*/</span>
+        <span class="n">led</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>          <span class="cm">/* Switch Off LED       */</span>
+        <span class="n">wait</span><span class="p">(</span><span class="n">ain</span><span class="p">);</span>        <span class="cm">/* Wait for 'ain' Seconds (maximum delay is 1 seconds)*/</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<h1>
+<a name="temperature-sensing" class="anchor" href="#temperature-sensing"><span class="octicon octicon-link"></span></a>Temperature Sensing</h1>
+
+<h2>
+<a name="ingredients-4" class="anchor" href="#ingredients-4"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<p>In addition to things listed in Recipe 1 we require</p>
+
+<ul>
+<li>Grove - Temperature Sensor</li>
+</ul><p><img src="figures/temperature.jpg" alt="Temperature Sensing"></p>
+
+<h2>
+<a name="procedure-4" class="anchor" href="#procedure-4"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>Connect SIG pin of Grove - Temperature Sensor to P0_11, other two pins to GND and 3.3V</li>
+<li>Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)</li>
+</ul><p>The room temperature is displayed as LED blinks. LED4 blinks corresponding to tens place of temperature value(in deg C) and LED1 blinks according to units place.</p>
+
+<p><strong>Arch_Analog_Thermistor_Blinker</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/viswesr/code/Arch_Analog_Thermistor_Blinker">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+
+<span class="n">AnalogIn</span> <span class="nf">thermistor</span><span class="p">(</span><span class="n">P0_11</span><span class="p">);</span>   <span class="cm">/* Thermistor output connected to P0_11 */</span>
+
+<span class="n">DigitalOut</span> <span class="nf">tensplaceLED</span><span class="p">(</span><span class="n">LED4</span><span class="p">);</span>  <span class="cm">/* This led blinks as per tens place of temperature value(in deg C) */</span>
+<span class="n">DigitalOut</span> <span class="nf">unitsplaceLED</span><span class="p">(</span><span class="n">LED1</span><span class="p">);</span> <span class="cm">/* This led blinks as per units place of temperature value(in deg C) */</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="mi">3975</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">tens</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">resistance</span><span class="p">;</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">thermistor</span><span class="p">.</span><span class="n">read_u16</span><span class="p">();</span> <span class="cm">/* Read analog value */</span>
+
+        <span class="cm">/* Calculate the resistance of the thermistor from analog votage read. */</span>
+        <span class="n">resistance</span><span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="mf">10000.0</span> <span class="o">*</span> <span class="p">((</span><span class="mf">65536.0</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">);</span>
+
+        <span class="cm">/* Convert the resistance to temperature using Steinhart's Hart equation */</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">((</span><span class="n">log</span><span class="p">(</span><span class="n">resistance</span><span class="o">/</span><span class="mf">5000.0</span><span class="p">)</span><span class="o">/</span><span class="n">beta</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">298.15</span><span class="p">)))</span><span class="o">-</span><span class="mf">273.15</span><span class="p">;</span> 
+
+        <span class="n">units</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">temperature</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">tens</span>  <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">temperature</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">tens</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+             <span class="n">tensplaceLED</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+             <span class="n">tensplaceLED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">units</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+             <span class="n">unitsplaceLED</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+             <span class="n">unitsplaceLED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+
+<h1>
+<a name="display-more-information" class="anchor" href="#display-more-information"><span class="octicon octicon-link"></span></a>Display more information</h1>
+
+<h2>
+<a name="ingredients-5" class="anchor" href="#ingredients-5"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<p>In addition to things listed in Recipe 1 we require</p>
+
+<ul>
+<li>Grove - 4 Digit Display</li>
+</ul><p><img src="figures/display.jpg" alt="Display"></p>
+
+<h2>
+<a name="procedure-5" class="anchor" href="#procedure-5"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>Connect Grove - Digit Display to UART Grove connector</li>
+<li>Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)</li>
+</ul><p><strong>Arch_Analog_Thermistor_Blinker</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_Analog_Thermistor_Blinker">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+
+<span class="n">AnalogIn</span> <span class="nf">thermistor</span><span class="p">(</span><span class="n">P0_11</span><span class="p">);</span>   <span class="cm">/* Thermistor output connected to P0_11 */</span>
+
+<span class="n">DigitalOut</span> <span class="nf">tensplaceLED</span><span class="p">(</span><span class="n">LED4</span><span class="p">);</span>  <span class="cm">/* This led blinks as per tens place of temperature value(in deg C) */</span>
+<span class="n">DigitalOut</span> <span class="nf">unitsplaceLED</span><span class="p">(</span><span class="n">LED1</span><span class="p">);</span> <span class="cm">/* This led blinks as per units place of temperature value(in deg C) */</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="mi">3975</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">tens</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">resistance</span><span class="p">;</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">thermistor</span><span class="p">.</span><span class="n">read_u16</span><span class="p">();</span> <span class="cm">/* Read analog value */</span>
+
+        <span class="cm">/* Calculate the resistance of the thermistor from analog votage read. */</span>
+        <span class="n">resistance</span><span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="mf">10000.0</span> <span class="o">*</span> <span class="p">((</span><span class="mf">65536.0</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">);</span>
+
+        <span class="cm">/* Convert the resistance to temperature using Steinhart's Hart equation */</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">((</span><span class="n">log</span><span class="p">(</span><span class="n">resistance</span><span class="o">/</span><span class="mf">5000.0</span><span class="p">)</span><span class="o">/</span><span class="n">beta</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">298.15</span><span class="p">)))</span><span class="o">-</span><span class="mf">273.15</span><span class="p">;</span> 
+
+        <span class="n">units</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">temperature</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">tens</span>  <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">temperature</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">tens</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+             <span class="n">tensplaceLED</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+             <span class="n">tensplaceLED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">units</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+             <span class="n">unitsplaceLED</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+             <span class="n">unitsplaceLED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+             <span class="n">wait</span><span class="p">(</span><span class="mf">.200</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+
+<h1>
+<a name="recipe-7-working-with-rtc" class="anchor" href="#recipe-7-working-with-rtc"><span class="octicon octicon-link"></span></a>Recipe 7: Working with RTC</h1>
+
+<h2>
+<a name="ingredients-6" class="anchor" href="#ingredients-6"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<p>In addition to things listed in <a href="http://mbed.org/users/viswesr/notebook/arch-cookbook/">Recipe 1</a>, we require</p>
+
+<ul>
+<li>Grove - Serial LCD</li>
+<li>Grove - RTC</li>
+</ul><h2>
+<a name="procedure-6" class="anchor" href="#procedure-6"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>Connect Grove - Serial LCD to on-board grove connector marked UART.</li>
+<li>Connect Grove - RTC to on board grove connector markded I2C.</li>
+<li>Build and upload the program to Arch platform. follow procedure listed in <strong>Recipe 1</strong>.</li>
+</ul><p>The following program demonstrates a clock.</p>
+
+<p><strong>Arch_GroveRTC_Ex1</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_GroveRTC_Ex1">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+<span class="cp">#include "SerialLCD.h"</span>
+<span class="cp">#include "ds1307.h"</span>
+
+<span class="n">SerialLCD</span> <span class="nf">lcd</span><span class="p">(</span><span class="n">P1_13</span><span class="p">,</span> <span class="n">P1_14</span><span class="p">);</span>  <span class="c1">// Grove Serial LCD is connected to UART Tx and Rx pins</span>
+<span class="n">DS1307</span> <span class="nf">rtc</span><span class="p">(</span><span class="n">P0_5</span><span class="p">,</span> <span class="n">P0_4</span><span class="p">);</span>    <span class="c1">// Grove RTC is connected to I2C SDA(P0_5) and SCL(P0_4)</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">week</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"Sun"</span><span class="p">,</span> <span class="s">"Mon"</span><span class="p">,</span> <span class="s">"Tue"</span><span class="p">,</span> <span class="s">"Wed"</span><span class="p">,</span> <span class="s">"Thu"</span><span class="p">,</span> <span class="s">"Fri"</span><span class="p">,</span> <span class="s">"Sat"</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">sec</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">year</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">strBuffer</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+
+    <span class="n">lcd</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+    <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Clock"</span><span class="p">);</span>
+    <span class="n">rtc</span><span class="p">.</span><span class="n">start_clock</span><span class="p">();</span>
+    <span class="n">rtc</span><span class="p">.</span><span class="n">gettime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sec</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">min</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hour</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">day</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">date</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">month</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">year</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">year</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">rtc</span><span class="p">.</span><span class="n">settime</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2014</span> <span class="o">%</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// Jan 1st, 2014, Wed, 00:00:00</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">rtc</span><span class="p">.</span><span class="n">gettime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sec</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">min</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hour</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">day</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">date</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">month</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">year</span><span class="p">);</span>
+        <span class="n">snprintf</span><span class="p">(</span><span class="n">strBuffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">strBuffer</span><span class="p">),</span> <span class="s">"%d-%d-%d  %s"</span><span class="p">,</span> <span class="mi">2000</span> <span class="o">+</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">week</span><span class="p">[</span><span class="n">day</span><span class="p">]);</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">strBuffer</span><span class="p">);</span>
+        <span class="n">snprintf</span><span class="p">(</span><span class="n">strBuffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">strBuffer</span><span class="p">),</span> <span class="s">"%d:%d:%d"</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">sec</span><span class="p">);</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">lcd</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">strBuffer</span><span class="p">);</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+
+<h1>
+<a name="recipe-8-working-with-usb-keyboard" class="anchor" href="#recipe-8-working-with-usb-keyboard"><span class="octicon octicon-link"></span></a>Recipe 8: Working with USB Keyboard</h1>
+
+<h2>
+<a name="ingredients-7" class="anchor" href="#ingredients-7"><span class="octicon octicon-link"></span></a>Ingredients</h2>
+
+<p>In addition to things listed in <a href="http://mbed.org/users/viswesr/notebook/arch-cookbook/">Recipe 1</a>, we require</p>
+
+<ul>
+<li>Grove - Button</li>
+</ul><h2>
+<a name="procedure-7" class="anchor" href="#procedure-7"><span class="octicon octicon-link"></span></a>Procedure</h2>
+
+<ul>
+<li>Connect Grove - Button to on-board grove connector marked UART.</li>
+<li>Build and upload the program to Arch platform. follow procedure listed in <strong>Recipe 1</strong>.</li>
+</ul><p>The following program demonstrates a USB keyboard with one button. Press the button to mute your computer and press CapsLock, NumLock or ScrollLock of your keyboard to turn on/off Arch's LEDs.</p>
+
+<p><strong>Arch_USB_Keyboard_Ex1</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_USB_Keyboard_Ex1">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+<span class="cp">#include "USBKeyboard.h"</span>
+
+<span class="c1">//LED1: NUM_LOCK, LED2: CAPS_LOCK, LED3: SCROLL_LOCK</span>
+<span class="n">BusOut</span> <span class="nf">leds</span><span class="p">(</span><span class="n">LED1</span><span class="p">,</span> <span class="n">LED2</span><span class="p">,</span> <span class="n">LED3</span><span class="p">);</span>
+<span class="n">DigitalOut</span> <span class="nf">button</span><span class="p">(</span><span class="n">P1_14</span><span class="p">);</span>               <span class="c1">// Configure P1_14 pin as input</span>
+<span class="n">USBKeyboard</span> <span class="n">keyboard</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">buttonPressedCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">keyboard</span><span class="p">.</span><span class="n">configured</span><span class="p">())</span> <span class="p">{</span>    <span class="c1">// wait until keyboard is configured</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">leds</span> <span class="o">=</span> <span class="n">keyboard</span><span class="p">.</span><span class="n">lockStatus</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">read</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">buttonPressedCount</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">==</span> <span class="n">buttonPressedCount</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// when button is pressed about 0.02s</span>
+                <span class="n">keyboard</span><span class="p">.</span><span class="n">mediaControl</span><span class="p">(</span><span class="n">KEY_MUTE</span><span class="p">);</span> <span class="c1">// send mute key</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">buttonPressedCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mf">0.01</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>The following program implements an automatic input keyboard triggered by CapsLock key (for Windows). When the CapsLock key is pressed, a website is opened by IE.</p>
+
+<p><strong>Arch_USB_Keyboard_Ex2</strong> - <a href="https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_USB_Keyboard_Ex2">Import to mbed online compiler</a></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "mbed.h"</span>
+<span class="cp">#include "USBKeyboard.h"</span>
+
+<span class="c1">//LED1: NUM_LOCK, LED2: CAPS_LOCK, LED3: SCROLL_LOCK</span>
+<span class="n">BusOut</span> <span class="nf">leds</span><span class="p">(</span><span class="n">LED1</span><span class="p">,</span> <span class="n">LED2</span><span class="p">,</span> <span class="n">LED3</span><span class="p">);</span>
+<span class="n">USBKeyboard</span> <span class="n">keyboard</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="n">caps</span><span class="p">;</span>                       <span class="c1">// status of CapsLock</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">keyboard</span><span class="p">.</span><span class="n">configured</span><span class="p">())</span> <span class="p">{</span>    <span class="c1">// wait until keyboard is configured</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">leds</span> <span class="o">=</span> <span class="n">keyboard</span><span class="p">.</span><span class="n">lockStatus</span><span class="p">();</span>
+        <span class="n">caps</span> <span class="o">=</span> <span class="n">keyboard</span><span class="p">.</span><span class="n">lockStatus</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0x2</span><span class="p">;</span>
+
+        <span class="c1">// wait until CapsLock is pressed</span>
+        <span class="k">while</span> <span class="p">((</span><span class="n">keyboard</span><span class="p">.</span><span class="n">lockStatus</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0x2</span><span class="p">)</span> <span class="o">==</span> <span class="n">caps</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">leds</span> <span class="o">=</span> <span class="n">keyboard</span><span class="p">.</span><span class="n">lockStatus</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">caps</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">keyboard</span><span class="p">.</span><span class="n">keyCode</span><span class="p">(</span><span class="n">KEY_CAPS_LOCK</span><span class="p">);</span>    <span class="c1">// lowercase input</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Automatic input</span>
+        <span class="n">keyboard</span><span class="p">.</span><span class="n">keyCode</span><span class="p">(</span><span class="sc">'r'</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">);</span>            <span class="c1">// win + r</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+        <span class="n">keyboard</span><span class="p">.</span><span class="n">puts</span><span class="p">(</span><span class="s">"iexplore  http://seeedstudio.com</span><span class="se">\n\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Arch Cookbook maintained by <a href="https://github.com/xiongyihui">xiongyihui</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
