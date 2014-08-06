@@ -57,13 +57,15 @@ The TXD or RXD labelled pins (i.e yellow coloured label) are possible routing pi
 At a time, one TXD and one RXD pin can be configured for the UART.
 
 # Recipe 1: Blinking an LED #
-A tradition of learn programming is write our first program to print a "hello, world" on our display.
-In Embedded Systems, we use a blinking LED to show our first running embedded system program to the world. 
+When we get started with programming, a traditional first program is a "Hello world" program 
+to output "Hello, world" on a display. While a display is not always available in embedded systems,
+blinking an LED is substituted for "Hello world" as our first embedded system program. Let's make
+an LED blink.
 
 ## Ingredients ##
 * Seeedstudio Arch board
 * Micro-USB cable
-* Access to internet and online mbed compiler.
+* Access to internet and mbed online compiler.
 
 ## Procedure ##
 * Import the following Arch_GPIO_Ex1 program into online mbed compiler.
@@ -73,7 +75,7 @@ In Embedded Systems, we use a blinking LED to show our first running embedded sy
 * Connect Arch board to PC using a micro-USB cable.
 * Press the reset button longer(at-least 2 seconds) and release.
 * You must see a USB drive being detected by you OS.
-* Copy the Arch_GPIO_Ex1_LPC11U24.bin to that USB drive.
+* Delete the firmware.bin in that USB drive, then copy the Arch_GPIO_Ex1_LPC11U24.bin to that USB drive.
 * Press and release the reset button very quickly.
 * You have flashed your first program onto Arch board.
 
@@ -98,14 +100,11 @@ int main()
 
 ~~~~
 
-The above program uses mbed interface DigitalOut and mbed built-in function wait().
-LED1 is an pseudonym given to port pin P1_8. LED1 is labelled D1 in the Arch board.
-The state of LED1 is changed writing either 0 or 1 to 'led'. The mbed wait() function
-produces a delay in seconds. The state of the 'led' is continuous toggled every 0.5 seconds
-inside the endless *while()* loop.
-
-The features and functions present in DigitalOut are documented in DigitalOut page in handbook.
-Similarly the wait() function is documented in wait page in handbook
+The above program uses the [DigitalOut][] interface and mbed built-in function [wait()](http://mbed.org/handbook/Wait).
+**LED1** is an pseudonym given to port pin **P1_8**. LED1 is labelled **D1** in the Arch board.
+The state of LED1 is changed writing either 0 or 1 to **led**. The **wait()** function
+produces a delay in seconds. The state of the **led** is continuous toggled every 0.5 seconds
+inside the endless **while()** loop.
 
 ## Variation ##
 Let us rewrite the above program using alternate APIs provided DigitalOut and wait.
@@ -131,17 +130,21 @@ int main()
 
 ~~~~
 
-Instead of led = in the Ex1 program, we have used led.write() function which essential does the same operation. 
-Here, wait() is replaced by wait_us(). The delay time is specified in micro seconds instead of seconds in this function.
+Instead of **led =** in the Ex1 program, we have used **led.write()** function which essential does the same operation. 
+Here, **wait()** is replaced by **wait_us()**. The delay time is specified in micro seconds instead of seconds in this function.
 
-# Control multi LEDs #
+# Recipe 2: Controlling multi LEDs #
+
+The following program uses one variable to modify a set of 4 LEDs with BusOut interface. 
+The LED1 to LED4 counts up 4-bit binary value one by one with half-a-second delay. 
+BusOut interface comes handy while sending data to devices with parallel ports like LCDs.
 
 ## Ingredients ##
 * Same as Recipe 1.
 
 ## Procedure
 
-* Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
+* Import, build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
 
 **Arch_GPIO_Ex4** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/viswesr/code/Arch_GPIO_Ex4)
 
@@ -164,11 +167,9 @@ int main()
 
 ~~~~
 
-The following program uses one variable to modify a set of 4 LEDs with BusOut interface. 
-The LED1 to LED4 counts up 4-bit binary value one by one with half-a-second delay. 
-BusOut interface comes handy while sending data to devices with parallel ports like LCDs.
 
-# Playing with Digital Output #
+
+# Recipe 3: Digital Input #
 
 ## Ingredients ##
 
@@ -176,7 +177,7 @@ In addition to things listed in Recipe 1 we require
 
 * Grove - Button
 
-![Digital Input](figures/digital_input.jpg)
+![Digital Input](figures/digital_input.png)
 
 ## Procedure
 
@@ -209,17 +210,20 @@ This value is written to LED1 port pin using led.write().
 
 More information on this new module is available at DigitalIn handbook page.
 
-# Analog world #
+# Recipe 4: Analog world #
+
+
+
 ## Ingredients ##
 In addition to things listed in Recipe 1 we require
 
 * Grove - Potentiometer
 
-![Analog world](figures/analog_world.jpg)
+![Analog world](figures/analog_world.png)
 
 ## Procedure ##
 
-* Connect middle SIG pin of Grove - Potentiometer to P0_11, other two pins to GND and 3.3V
+* Connect Grove - Potentiometer to the Grove connector named "Analog"
 * Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
 
 The rate of blinking of the LED is controlled by the analog value read from the potentiometer.
@@ -249,13 +253,13 @@ int main()
 
 
 
-# Temperature Sensing #
+# Recipe 5: Temperature Sensing #
 ## Ingredients ##
 In addition to things listed in Recipe 1 we require
 
 * Grove - Temperature Sensor
 
-![Temperature Sensing](figures/temperature.jpg)
+![Temperature Sensing](figures/temperature.png)
 
 ## Procedure ##
 
@@ -317,34 +321,63 @@ int main()
 
 
 
-# Display more information #
+# Recipe 6: Display more information #
+
+Using 4 onboard LEDs to display numbers is not convenient. So here we get a 4 7-segment display to show
+numbers or time.
+
 ## Ingredients ##
 In addition to things listed in Recipe 1 we require
 
 * Grove - 4 Digit Display
 
-![Display](figures/display.jpg)
+![Display](figures/display.png)
 
 ## Procedure ##
 
 * Connect Grove - Digit Display to UART Grove connector
 * Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
 
-**Arch_Analog_Thermistor_Blinker** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_Analog_Thermistor_Blinker)
+**Arch_Digit_Display** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_Digit_Display)
 
 ~~~~{.cpp}
 #include "mbed.h"
+#include "DigitDisplay.h"
 
-AnalogIn thermistor(P0_11);   /* Thermistor output connected to P0_11 */
+DigitDisplay display(P1_14, P1_13); // 4-Digit Display connected to UART Grove connector
+DigitalOut   led(LED1);
 
-DigitalOut tensplaceLED(LED4);  /* This led blinks as per tens place of temperature value(in deg C) */
-DigitalOut unitsplaceLED(LED1); /* This led blinks as per units place of temperature value(in deg C) */
+int main() {
+    int count = 0;
+    while(1) {
+        display = count;
+        count++;
+        led = !led;
+        wait(1);
+    }
+}
 
-int main()
-{
-    unsigned int a, beta = 3975, units, tens;
+~~~~
+
+* Modifying the Thermistor program to use the display
+
+Apart from display connection, connect Grove - Temperature similar to Recipe 5
+The following program display temperature in deg C using display.
+
+**Arch_Display_Temperature** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_Display_Temperature/)
+
+~~~~{.cpp}
+#include "mbed.h"
+#include "DigitDisplay.h"
+
+DigitDisplay display(P1_14, P1_13); // 4-Digit Display connected to UART Grove connector
+AnalogIn thermistor(P0_12);         // Thermistor output connected to P0_12
+
+int main() {
+    unsigned int a;
+    unsigned int beta = 3975;
     float temperature, resistance;
-
+ 
     while(1) {
         a = thermistor.read_u16(); /* Read analog value */
         
@@ -352,93 +385,306 @@ int main()
         resistance= (float) 10000.0 * ((65536.0 / a) - 1.0);
         
         /* Convert the resistance to temperature using Steinhart's Hart equation */
-        temperature=(1/((log(resistance/5000.0)/beta) + (1.0/298.15)))-273.15; 
+        temperature = (1/((log(resistance/10000.0)/beta) + (1.0/298.15)))-273.15; 
         
-        units = (int) temperature % 10;
-        tens  = (int) temperature / 10;
-        
-        
-        for(int i=0; i< tens; i++)
-        {
-             tensplaceLED = 1;
-             wait(.200);
-             tensplaceLED = 0;
-             wait(.200);
-        }
-        
-        for(int i=0; i< units; i++)
-        {
-             unitsplaceLED = 1;
-             wait(.200);
-             unitsplaceLED = 0;
-             wait(.200);
-        }
+        display = (int)temperature;
       
         wait(0.5);
     }
 }
 
-
 ~~~~
 
 
 
-# Recipe 7: Working with RTC #
-## Ingredients ##
-In addition to things listed in [Recipe 1][Arch Cookbook], we require
+# Recipe 7: Be colorful #
 
-* Grove - Serial LCD
-* Grove - RTC
+Instead of display a temperature in deg C, using a color to map a temperature is more beautiful.
+
+## Ingredients ##
+In addition to things listed in Recipe 1 we require
+
+* Grove - Temperature
+* Grove - Chainable RGB LED
+
 
 ## Procedure ##
-* Connect Grove - Serial LCD to on-board grove connector marked UART.
-* Connect Grove - RTC to on board grove connector markded I2C.
-* Build and upload the program to Arch platform. follow procedure listed in **Recipe 1**.
 
-The following program demonstrates a clock.
+* Connect Grove - Temperature to the Grove connector named "Analog"
+* Connect Grove - Chainable RGB LED to the Grove connector named "UART"
+* Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
 
-**Arch_GroveRTC_Ex1** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_GroveRTC_Ex1)
+**be_colorful** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/be_colorful)
 
 ~~~~{.cpp}
 #include "mbed.h"
-#include "SerialLCD.h"
-#include "ds1307.h"
- 
-SerialLCD lcd(P1_13, P1_14);  // Grove Serial LCD is connected to UART Tx and Rx pins
-DS1307 rtc(P0_5, P0_4);    // Grove RTC is connected to I2C SDA(P0_5) and SCL(P0_4)
- 
-int main() {
-    const char *week[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-    int sec, min, hour, day, date, month, year;
-    char strBuffer[16];
-    
-    lcd.begin();
-    lcd.print("Clock");
-    rtc.start_clock();
-    rtc.gettime(&sec, &min, &hour, &day, &date, &month, &year);
-    if (0 == year) {
-        rtc.settime(0, 0, 0, 4, 1, 1, 2014 % 100); // Jan 1st, 2014, Wed, 00:00:00
-    }
+#include "ChainableLED.h"
 
+//#define DEBUG
+
+#ifdef DEBUG
+
+#include "USBSerial.h"
+#define LOG(args...)        pc.printf(args)
+USBSerial pc;
+
+#else
+
+#define LOG(args...)
+
+#endif  // DEBUG
+
+
+// ChainableLED(clk, data, number_of_leds)
+ChainableLED color_led(P1_14, P1_13, 1);
+AnalogIn thermistor(P0_12);
+
+float get_temperature()
+{
+    unsigned int a, beta = 3975;
+    float temperature, resistance;
+    
+    a = thermistor.read_u16();
+    
+    /* Calculate the resistance of the thermistor from analog votage read. */
+    resistance = (float) 10000.0 * ((65536.0 / a) - 1);
+    
+    /* Convert the resistance to temperature using Steinhart's Hart equation */
+    temperature=(1/((log(resistance/10000.0)/beta) + (1.0/298.15)))-273.15; 
+    
+    return temperature;
+}
+
+int temperature2color(float t)
+{
+    float low  = 26;
+    float high = 30;
+    int   min = 0;
+    int   max = 255;
+    int   color;
+    
+    if (t < low) {
+        color = min;
+    } else if (t > high) {
+        color = max;
+    } else {
+        color = min + (max - min) * ((t - min) / (max - min));
+    }
+    
+    return color;
+}
+    
+
+int main() {
+  
     while(1) {
-        rtc.gettime(&sec, &min, &hour, &day, &date, &month, &year);
-        snprintf(strBuffer, sizeof(strBuffer), "%d-%d-%d  %s", 2000 + year, month, date, week[day]);
-        lcd.setCursor(0, 0);
-        lcd.print(strBuffer);
-        snprintf(strBuffer, sizeof(strBuffer), "%d:%d:%d", hour, min, sec);
-        lcd.setCursor(0, 1);
-        lcd.print(strBuffer);
-        wait(0.5);
+        float t = get_temperature();
+        uint8_t color = temperature2color(t);
+        
+        LOG("Temperature: %f\r\n", t);
+        LOG("Color: %d\r\n", color);
+        
+        // ChainableLED.setColorRGB(index_of_led, red, green, blue)
+        color_led.setColorRGB(0, color, 0xFF - color, 0);
+        wait(0.05);
     }
 }
 
 
+~~~~
+
+
+
+# Recipe 8: A little sound #
+
+## Ingredients ##
+In addition to things listed in Recipe 1 we require
+
+* Grove - Buzz
+
+## Procedure ##
+
+* Connect Grove - Buzz to the Grove connector named "UART"
+* Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
+
+**Arch_Play_Music** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_Play_Music)
+
+~~~~{.cpp}
+#include "mbed.h"
+#include "pitches.h"
+
+DigitalOut myled(LED1);
+
+PwmOut buzzer(P1_14);
+
+int frequency[] = {NOTE_C4, NOTE_G3,NOTE_G3, NOTE_A3, NOTE_G3, 1, NOTE_B3, NOTE_C4};
+int beat[] = {4, 8, 8, 4,4,4,4,4 };
+
+int main() {
+    for (int i = 0; i < (sizeof(frequency) / sizeof(int)); i++) {
+        buzzer.period(1.0 / frequency[i]);
+        buzzer.write(0.5);
+        wait(1.0 / beat[i]);
+        buzzer.write(0);
+        wait(0.05);
+    }
+    
+    while(1) {
+        myled = !myled;
+        wait(1);
+    }
+}
 
 ~~~~
 
-# Recipe 8: Working with USB Keyboard #
+
+# Recipe 9: Capacitive Touch #
+
+Capacitive touch key is widely used these days. There are several ways to detect a touch on a touch key.
+Here we use the charging/discharging time of a simple RC circuit to measure touch event.
+
 ## Ingredients ##
-In addition to things listed in [Recipe 1][Arch Cookbook], we require
+In addition to things listed in Recipe 1 we require
+
+* A wire
+
+## Procedure ##
+
+* Connect a wire to P1_5
+* Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
+
+**Arch_Capacitive_Touch** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/Arch_Capacitive_Touch)
+
+~~~~{.cpp}
+#include "mbed.h"
+
+DigitalOut led(LED1);
+DigitalInOut touch(P0_11);       // Connect a wire to P0_11
+Ticker tick;
+
+uint8_t touch_data = 0;         // data pool
+
+void detect(void)
+{
+    uint8_t count = 0;
+    touch.input();              // discharge the capacitor
+    while (touch.read()) {
+        count++;
+        if (count > 4) {
+            break;
+        }
+    }
+    touch.output();
+    touch.write(1);             // charge the capacitor
+    
+    if (count > 2) {
+        touch_data = (touch_data << 1) + 1;
+    } else {
+        touch_data = (touch_data << 1);
+    }
+    
+    if (touch_data == 0x01) {
+        led = 1;                // touch
+    } else if (touch_data == 0x80) {
+        led = 0;                // release
+    }
+}
+
+int main()
+{
+    touch.mode(PullDown);
+    touch.output();
+    touch.write(1);
+    
+    tick.attach(detect, 1.0 / 64.0);
+    
+    while(1) {
+        // do something
+    }
+}
+
+~~~~
+
+
+# Recipe X: Time #
+
+## Ingredients ##
+In addition to things listed in Recipe 1 we require
+
+* Grove - 4 Digit Display
+
+## Procedure ##
+
+* Connect Grove - Digit Display to UART Grove connector
+* Build and upload the program to Arch platform. (follow procedure listed in Recipe 1)
+
+**clock** - [Import to mbed online compiler](https://mbed.org/compiler/#import:https://mbed.org/users/yihui/code/clock)
+
+~~~~{.cpp}
+#include "mbed.h"
+#include "DigitDisplay.h"
+
+DigitDisplay display(P1_14, P1_13); // 4-Digit Display connected to UART Grove connector
+DigitalOut led(LED1);
+DigitalOut led2(LED2);
+Ticker tick;
+uint8_t hour = 0;
+uint8_t minute = 0;
+uint8_t second = 0;
+uint8_t colon = 0;
+
+uint8_t display_buffer[4] = {0, 0, 0, 0};
+
+void handler(void)
+{
+    display.setColon(colon);
+    led2 = !led2;
+    if (colon) {
+        colon = 0;
+        
+        second++;
+        if (second >= 60) {
+            second = 0;
+            
+            minute++;
+            if (minute >= 60) {
+                minute = 0;
+                
+                hour++;
+                if (hour >= 24) {
+                    hour = 0;
+                }
+            }
+            
+
+            display_buffer[0] = hour / 10;
+            display_buffer[1] = hour % 10;
+            
+            display_buffer[2] = minute / 10;
+            display_buffer[3] = minute % 10;
+            
+            display.write(display_buffer);
+        }
+    } else {
+        colon = 1;
+    }
+}
+
+int main() {
+    display.write(display_buffer);
+    tick.attach(handler, 0.5);
+    while(1) {
+        led = !led;
+        wait(0.5);
+    }
+}
+
+~~~~
+
+
+# Recipe X: Working with USB Keyboard #
+## Ingredients ##
+In addition to things listed in Recipe 1, we require
 
 * Grove - Button
 
@@ -521,6 +767,5 @@ int main(void) {
 }
 ~~~~
 
-[Arch Cookbook]: http://mbed.org/users/viswesr/notebook/arch-cookbook/
 
 

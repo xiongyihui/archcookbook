@@ -4,7 +4,7 @@ In addition to things listed in Recipe 1 we require
 
 * Grove - Temperature Sensor
 
-![Temperature Sensing](figures/temperature.jpg)
+![Temperature Sensing](figures/temperature.png)
 
 ## Procedure ##
 

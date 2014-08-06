@@ -6,7 +6,7 @@ In addition to things listed in Recipe 1 we require
 
 * Grove - Button
 
-![Digital Input](figures/digital_input.jpg)
+![Digital Input](figures/digital_input.png)
 
 ## Procedure
 

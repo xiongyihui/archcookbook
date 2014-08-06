@@ -7,7 +7,7 @@ In addition to things listed in Recipe 1 we require
 
 * Grove - Potentiometer
 
-![Analog world](figures/analog_world.jpg)
+![Analog world](figures/analog_world.png)
 
 ## Procedure ##
 

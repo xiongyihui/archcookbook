@@ -8,7 +8,7 @@ In addition to things listed in Recipe 1 we require
 
 * Grove - 4 Digit Display
 
-![Display](figures/display.jpg)
+![Display](figures/display.png)
 
 ## Procedure ##
 
